@@ -4,7 +4,7 @@
   "private": true,
   "description": "Demonstration project for students. Feburary 16",
   "scripts": {
-    "postinstall": "webdriver-manager update",
+    "postinstall": "webdriver-manager update", 
     "test": "protractor"
   },
   "dependencies":{
