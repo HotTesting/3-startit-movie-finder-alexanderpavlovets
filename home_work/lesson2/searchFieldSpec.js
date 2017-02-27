@@ -33,19 +33,17 @@ describe('Search field test', ()=> {
         searchField.sendKeys(inexistentValue)
         element(by.buttonText('Go!')).click()
         browser.sleep(2000)
-        // let searchResult = $('div .row .is-flex')
+        // let searchResult = $('div .row .is-flex') 
         // expect(searchResult.isDisplayed()).toBe(false,'After inexistent search, empty "Search results" area  should be displayed')
         // WTF ? Why element isn't visible, but protractors tells - it is visible. Ask Sasha.
         
         
-        // let searchResult = $('h3')
-        // let movieCardOfSearchRes = searchResult.$('movie-card')
-        // expect(movieCardOfSearchRes.isPresent()).toBe(false)
-        // Isn't working, all the time passes. Ask Sasha.
-
-        // Write something an move-on, 2 hours spent already. This one will pass anyway. 
+        // Write something an move-on, 2 hours spent already. This one will pass anyway.
         let categoryName = $('h3').getText()
         expect(categoryName).toBe('Search Results', 'After inexistent search, empty "Search results" area  should be displayed')
+
+        let searchResult = $('body > app-root > div > div > div.col-xs-12.col-sm-8.col-md-9.col-lg-10 > movies > div:nth-child(3) > div')
+        expect(searchResult.isDisplayed()).toBe(false, 'Still isn\'t working even after copy-pass the selector!!!')
     })
 
     it('Upper case test', ()=> {
