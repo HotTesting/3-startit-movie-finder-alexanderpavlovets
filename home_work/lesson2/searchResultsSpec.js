@@ -21,7 +21,4 @@ describe('Check first card test', ()=>{
         expect(checkCard(movieCard)).toBe(true, 'Movie card should contain all required fields' )
     })
 
-    //Continue: need to find all elements - create an collection, and check every element from the colection. 
-    // Try to understand why "more than 1 element found" in the log - i think it shouldn't be like that
-
 })
