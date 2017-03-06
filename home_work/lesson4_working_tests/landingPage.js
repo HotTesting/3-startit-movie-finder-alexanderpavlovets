@@ -30,13 +30,18 @@ describe('Landing page', ()=>{
         expect(quantityOfCategories).toEqual(19, 'Categories menu should have 19 categories')
     })
 
-    it('contains 2 sections - "TopRated" and "Popular"', ()=>{
+    it('contains 2 sections - "TopRated" and "Popular" with 20 movie-cards in each', ()=>{
         browser.get('')
+        // "Top rated" area tests:
         let topRatedAreaName = $$('h3').get(0).getText()
         expect(topRatedAreaName).toBe('Top Rated Movies', 'First section should have "Top rated movies" name')
+        let topRatedAreaElements = $$('.row.is-flex').first()
+        expect(topRatedAreaElements.$$('movie-card').count()).toBe(20, '"Top rated movies" section should have 20 movie-cards')
         
+        // "Popular movies" area tests:
         let popularAreaName = $$('h3').get(1).getText()
         expect(popularAreaName).toBe('Popular Movies', 'Second section should have "Popular Movies" name')
+        expect($$('.row.is-flex').last().$$('movie-card').count()).toBe(20, '"Popular movies" section should have 20 movie-cards')
     })
 
 
