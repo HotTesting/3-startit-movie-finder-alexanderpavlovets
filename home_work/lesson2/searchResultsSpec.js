@@ -10,7 +10,7 @@ function checkCard (card){
 describe('Check first card test', ()=>{
     let searchField = $('[name = searchStr]')
     let searchRequest = 'matrix'
-
+  
     it('First card with all fields', ()=> {
         browser.get('')
         searchField.sendKeys(searchRequest)

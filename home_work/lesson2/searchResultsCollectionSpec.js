@@ -22,7 +22,7 @@ describe('Collection check', ()=> {
         expect(searchResultArea.getText()).toBe('Search Results', 'Search results area should be selected to this test')
 
         let searchResultMovieCards = searchResultArea.$$('movie-card')
-
+        
         searchResultMovieCards.map((card, index) => {
             expect(checkCard(card)).toBe(true, index + ' Movie card isn\'t contain all required values')
         }) //This one isn't working ... seems like this. Ask Sasha. 
