@@ -1,7 +1,7 @@
 module.exports.config = {
     specs: ['home_work/lesson4_working_tests/landingPage.js', 
             'home_work/lesson4_working_tests/searchMainFunctionality.js',
-            'home_work/lesson4_working_tests/movieCardValidation.js'],
+            'home_work/lesson4_working_tests/movieCardsValidation.js'],
     directConnect: true,
     baseUrl: 'https://movies-finder.firebaseapp.com/',
     onPrepare: function () {
