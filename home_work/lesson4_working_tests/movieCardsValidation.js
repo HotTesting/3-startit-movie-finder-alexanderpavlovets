@@ -12,10 +12,12 @@ describe('Movie-cards', ()=>{
     it('on landing page all have 5 required fields', ()=>{
         browser.get('')
         browser.sleep(2000)
-        //$$('movie-card').map(()=>checkCard())  ask Sasha what is wrong here, how to write it short?
+        //$$('movie-card').map(checkCard)  ask Sasha what is wrong here, how to write it short? Like this write! 
 
         let allMovieCards = $$('movie-card')
         allMovieCards.map((elem)=> checkCard(elem))
+
+        //!!!IMPORTANT add here check that there are >0 movie-cards (just assertion), because if 0 - test will pass, WO any interaction. 
     })
 
     // it('first one has all required fields', ()=>{
