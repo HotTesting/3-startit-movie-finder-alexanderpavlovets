@@ -29,9 +29,9 @@ let homePage = new HomePage()
         expect(homePage.getPopularMoviesCollection().count()).toBe(20, 'after non-existing value is passed to search, Popular area with 20 movies should be presented')
     })
 
-    it('opens appropriate cat', ()=> {
+    it('opens appropriate category', ()=> {
         homePage.open()
-        homePage.categoriesLinksCollection.map((eachCat) => {
+        homePage.categoriesLinksCollection.map(eachCat => {
             browser.manage().timeouts().implicitlyWait(1000) //Implicit wait, to give browser a time to open each category, and find it's title text
             homePage.openCategory(eachCat)
             expect(eachCat.getText()).toContain($('app-genres h3').getText(), 'category name and title should match')
