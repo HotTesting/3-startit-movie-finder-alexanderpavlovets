@@ -2,18 +2,32 @@ class CategoryPage {
     constructor(categoryTitle, url) {
         this.categoryTitle = categoryTitle
         this.URL = url
+        this.movieCardsOfOpenedCategory = $$('movie-card')
+        this.categoriesOfOpenedMovieCard = $$('a.label.label-info')
     }
 
     open(){
         browser.get(this.URL)
     }
 
-    openCategoryByTitle(category){
+    openCategoryByTitle(category) {
         let  categoryObject = categoriesList[category.toLowerCase()]
         return new CategoryPage(categoryObject.title, categoryObject.url).open()
     }
 
-    
+    openMovieCard(movieCard){
+       movieCard.$('h4 a').click()
+       let titleOfOpenedMovieCardShown = EC.visibilityOf($$('h2').first())
+       browser.wait(titleOfOpenedMovieCardShown, 2000, 'Title of opened movie-card isn\'t displayed')
+    }
+
+    verifyPresentedMovieCardsToHaveCategory(category){
+        this.movieCardsOfOpenedCategory.map((movCard) => {
+            $('h4 a').click()
+            browser.navigate().back()
+        })
+    }
+
 
 }
 

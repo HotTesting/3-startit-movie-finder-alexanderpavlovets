@@ -33,6 +33,7 @@ let homePage = new HomePage()
         homePage.open()
         homePage.categoriesLinksCollection.map(eachCat => {
             browser.manage().timeouts().implicitlyWait(1000) //Implicit wait, to give browser a time to open each category, and find it's title text
+            // rewrite this implicit timeout to be wait, implicit should be somewhere in config maybe, you will forgot about it
             homePage.openCategory(eachCat)
             expect(eachCat.getText()).toContain($('app-genres h3').getText(), 'category name and title should match')
         })
