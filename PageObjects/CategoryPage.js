@@ -10,24 +10,11 @@ class CategoryPage {
         browser.get(this.URL)
     }
 
-    openCategoryByTitle(category) {
-        let  categoryObject = categoriesList[category.toLowerCase()]
-        return new CategoryPage(categoryObject.title, categoryObject.url).open()
-    }
-
     openMovieCard(movieCard){
        movieCard.$('h4 a').click()
        let titleOfOpenedMovieCardShown = EC.visibilityOf($$('h2').first())
        browser.wait(titleOfOpenedMovieCardShown, 2000, 'Title of opened movie-card isn\'t displayed')
     }
-
-    verifyPresentedMovieCardsToHaveCategory(category){
-        this.movieCardsOfOpenedCategory.map((movCard) => {
-            $('h4 a').click()
-            browser.navigate().back()
-        })
-    }
-
 
 }
 
@@ -73,4 +60,12 @@ let categoriesList = {
     
 }
 
+function openCategoryByTitle(category) {
+        let  categoryObject = categoriesList[category.toLowerCase()]
+        let page = new CategoryPage(categoryObject.title, categoryObject.url)
+        page.open()
+        return page
+    }
+
 module.exports.CategoryPage = CategoryPage
+module.exports.openCategoryByTitle = openCategoryByTitle
