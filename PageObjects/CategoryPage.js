@@ -16,6 +16,12 @@ class CategoryPage {
        browser.wait(titleOfOpenedMovieCardShown, 2000, 'Title of opened movie-card isn\'t displayed')
     }
 
+    checkIfCategoryPresentedInsideMovie(category){
+        this.categoriesOfOpenedMovieCard.filter((elem) => {
+            return elem.getText() === category
+            }).first()
+    }
+
 }
 
 let categoriesList = {

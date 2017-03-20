@@ -8,6 +8,8 @@ module.exports.config = {
         let Jasmine2Reporter = require('jasmine2-reporter').Jasmine2Reporter
         jasmine.getEnv().addReporter(new Jasmine2Reporter());
 
+        //giving implicit wait for all search activities in project 
+        browser.manage().timeouts().implicitlyWait(1000);
 
         // Jasmine PRE/POST conditions
         beforeEach(()=> {

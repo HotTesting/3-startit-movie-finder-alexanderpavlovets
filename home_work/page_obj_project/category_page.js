@@ -16,7 +16,10 @@ describe('Category page', () => {
     fit('Action is opened and first movie has "action" category', ()=>{
         let page = openCategoryByTitle('action')
         page.openMovieCard(page.movieCardsOfOpenedCategory.get(0))
-        browser.sleep(3000)
+            expect(page.categoriesOfOpenedMovieCard.first().getText()).toBe('Action', 'Bla bla bla')
+
+        // this is working but like shit! Rewrite Filter somehow in CategoryPage.js and use it ! 
+        
     })
 
 })
