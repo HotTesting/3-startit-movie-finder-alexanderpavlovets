@@ -2,21 +2,20 @@ class CategoryPage {
     constructor(categoryTitle, url) {
         this.categoryTitle = categoryTitle
         this.URL = url
-        this.movieCardsOfOpenedCategory = $$('movie-card')
+        //this.movieCardsOfOpenedCategory =
         this.categoriesOfOpenedMovieCard = $$('a.label.label-info')
+    }
+
+    get movieCardsOfOpenedCategory() {
+        return $$('movie-card')
     }
 
     open(){
         browser.get(this.URL)
     }
 
-    openCategoryByTitle(category) {
-        let  categoryObject = categoriesList[category.toLowerCase()]
-        return new CategoryPage(categoryObject.title, categoryObject.url).open()
-    }
-
-    openMovieCard(movieCard){
-       movieCard.$('h4 a').click()
+    openMovieCard(ind){
+       this.movieCardsOfOpenedCategory.get(ind).$('h4 a').click()
        let titleOfOpenedMovieCardShown = EC.visibilityOf($$('h2').first())
        browser.wait(titleOfOpenedMovieCardShown, 2000, 'Title of opened movie-card isn\'t displayed')
     }
@@ -73,4 +72,12 @@ let categoriesList = {
     
 }
 
+function openCategoryByTitle(category) {
+    let categoryObject = categoriesList[category.toLowerCase()]
+    let page = new CategoryPage(categoryObject.title, categoryObject.url)
+    page.open()
+    return page
+}
+
 module.exports.CategoryPage = CategoryPage
+module.exports.openCategoryByTitle = openCategoryByTitle

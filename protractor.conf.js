@@ -1,5 +1,5 @@
 module.exports.config = {
-    specs: ['home_work/page_obj_project/home_page.js',
+    specs: [//'home_work/page_obj_project/home_page.js',
             'home_work/page_obj_project/category_page.js'],
     directConnect: true,
     baseUrl: 'https://movies-finder.firebaseapp.com/',
