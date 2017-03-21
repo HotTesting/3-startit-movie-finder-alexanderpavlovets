@@ -6,6 +6,10 @@ class CategoryPage {
         this.categoriesOfOpenedMovieCard = $$('a.label.label-info')
     }
 
+    get firstMovieCard(){
+        return this.movieCardsOfOpenedCategory.first()
+    }
+
     open(){
         browser.get(this.URL)
     }
