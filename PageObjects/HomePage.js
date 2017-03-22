@@ -8,6 +8,8 @@ class HomePage {
         this.popularMoviesCollection = element(by.cssContainingText('movies > h3', 'Popular Movies')).element(by.xpath('following-sibling::div[1]')).$$('movie-card')
         this.searchResultsCollection = element(by.cssContainingText('movies h3', 'Search Results')).element(by.xpath('following-sibling::div[1]')).$$('movie-card')
         this.categoriesLinksCollection = $$('ul.nav-stacked a')
+        this.headerNavigationBar = $('[id=navbar]')
+        this.upcomingMoviesHeaderLink = $$('[id=navbar] a').first()
     }
 
     open() {
@@ -48,6 +50,12 @@ class HomePage {
         browser.wait(EC.visibilityOf(category), 1000, category + 'category should be shown')
         category.click()
     }
+
+    openUpcomingMovies() {
+        let headerNavBarIsShown = EC.visibilityOf(this.headerNavigationBar)
+        browser.wait(headerNavBarIsShown, 2000, 'Header navigation bar should be shown, in order to open "Upcoming movies" page')
+        this.upcomingMoviesHeaderLink.click()
+    }
 }
 
-module.exports.HomePage = HomePage //read about this, what for is it here? 
+module.exports.HomePage = HomePage  

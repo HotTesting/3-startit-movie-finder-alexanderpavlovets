@@ -37,4 +37,16 @@ let homePage = new HomePage()
             expect(eachCat.getText()).toContain($('app-genres h3').getText(), 'category name and title should match')
         })
     })
+    
+    fit('opens "Upcoming movies" section', () => {
+        homePage.open()
+        homePage.openUpcomingMovies()
+        let titleOfUpcomingMoviesSection = $('h3')
+        browser.wait(EC.visibilityOf(titleOfUpcomingMoviesSection), 2000, 'title of Upcoming movies should be shown ')
+        expect(titleOfUpcomingMoviesSection.getText()).toContain('Up Coming Movies', 'title of opened Upcoming movies section, shoud be "Up Coming Movies"')
+        //let appearedClassOfUpcomingMoviesLink = $$('[id=navbar] li').first().getAttribute('class').then((text)=>console.log(text))
+        expect($$('[id=navbar] li').first().getAttribute('class')).toContain('active', 'Oops! ')
+        // weird - try to use let, need to understand 
+    })    
+
 })
