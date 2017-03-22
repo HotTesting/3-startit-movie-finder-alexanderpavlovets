@@ -10,6 +10,7 @@ class HomePage {
         this.categoriesLinksCollection = $$('ul.nav-stacked a')
         this.headerNavigationBar = $('[id=navbar]')
         this.upcomingMoviesHeaderLink = $$('[id=navbar] a').first()
+        this.popularSeriesHeaderLink = $$('[id=navbar] a').last()
     }
 
     open() {
@@ -40,7 +41,8 @@ class HomePage {
 
         return this.searchResultsCollection
     }
-
+    //__________________________________________________________
+    // Rewrite getter to be like "get Search result", and then use it in tests like property of homePage
     searchForMovie(searchRequest) {
         this.searchField.sendKeys(searchRequest)
         this.goButton.click()
@@ -56,6 +58,14 @@ class HomePage {
         browser.wait(headerNavBarIsShown, 2000, 'Header navigation bar should be shown, in order to open "Upcoming movies" page')
         this.upcomingMoviesHeaderLink.click()
     }
+
+    openPopularSeries() {
+        let headerNavBarIsShown = EC.visibilityOf(this.headerNavigationBar)
+        browser.wait(headerNavBarIsShown, 2000, 'Header navigation bar should be shown, in order to open "Popular Series" page')
+        this.popularSeriesHeaderLink.click()
+    }
+
+
 }
 
 module.exports.HomePage = HomePage  

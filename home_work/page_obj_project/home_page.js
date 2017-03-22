@@ -38,15 +38,24 @@ let homePage = new HomePage()
         })
     })
     
-    fit('opens "Upcoming movies" section', () => {
+    it('opens "Upcoming movies" page', () => {
         homePage.open()
         homePage.openUpcomingMovies()
         let titleOfUpcomingMoviesSection = $('h3')
-        browser.wait(EC.visibilityOf(titleOfUpcomingMoviesSection), 2000, 'title of Upcoming movies should be shown ')
-        expect(titleOfUpcomingMoviesSection.getText()).toContain('Up Coming Movies', 'title of opened Upcoming movies section, shoud be "Up Coming Movies"')
-        //let appearedClassOfUpcomingMoviesLink = $$('[id=navbar] li').first().getAttribute('class').then((text)=>console.log(text))
-        expect($$('[id=navbar] li').first().getAttribute('class')).toContain('active', 'Oops! ')
-        // weird - try to use let, need to understand 
-    })    
+        browser.wait(EC.visibilityOf(titleOfUpcomingMoviesSection), 2000, 'title of opened "Upcoming movies" page should be shown ')
+        expect(titleOfUpcomingMoviesSection.getText()).toContain('Up Coming Movies', 'title of opened Upcoming movies page, shoud be "Up Coming Movies"')
+        let appearedClassOfUpcomingMoviesLink = $$('[id=navbar] li').first().getAttribute('class').then((text)=>{return text})
+        expect(appearedClassOfUpcomingMoviesLink).toContain('active', '"Upcomin movies" link in the header should be highlighted after opening "Upcoming movies" page')
+    })   
+
+    it('opens "Popular series" page', () => {
+        homePage.open()
+        homePage.openPopularSeries()
+        let titleOfPopularSeriesSection = $('h3')
+        browser.wait(EC.visibilityOf(titleOfPopularSeriesSection), 2000, 'title of opened "Popular series" page, shoud be shown')
+        expect(titleOfPopularSeriesSection.getText()).toContain('Popular Series', 'title of opened "Popular Series" page, shoud be "Popular Series"')
+        let appearedClassOfPopularSeriesLink = $$('[id=navbar] li').last().getAttribute('class').then((text)=>{return text})
+        expect(appearedClassOfPopularSeriesLink).toContain('active', '"Popular Series" link in the header should be highlighted after opening "Popular series" page')
+    }) 
 
 })
