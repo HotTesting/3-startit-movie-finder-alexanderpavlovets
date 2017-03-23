@@ -7,15 +7,15 @@ let homePage = new HomePage()
     it('has 2 sections after opening "Top Rated" and "Popular" ', ()=>{
         homePage.open()
 
-        expect(homePage.getTopRatedMoviesCollection().count()).toBe(20, 'Home page should have 20 movies in Top rated area after opening')
-        expect(homePage.getPopularMoviesCollection().count()).toBe(20, 'Home page should have 20 movies in Popular area after opening')
+        expect(homePage.TopRatedMoviesCollection.count()).toBe(20, 'Home page should have 20 movies in Top rated area after opening')
+        expect(homePage.PopularMoviesCollection.count()).toBe(20, 'Home page should have 20 movies in Popular area after opening')
 
     })
 
     it('displays results after valid search', () => {
         homePage.open()
         homePage.searchForMovie('Matrix')
-        homePage.getSearchResultCollection().map((movieCard) => {
+        homePage.SearchResultCollection.map((movieCard) => {
             expect(movieCard.$('h4').getText().then(text => text.toLowerCase())).toContain('matrix')
         })
     })
@@ -24,9 +24,9 @@ let homePage = new HomePage()
         homePage.open()
         homePage.searchForMovie('ReallyinexistantstringforSearch')
         
-        expect(homePage.getSearchResultCollection().count()).toBe(0, 'after non-existing value is passed to search, no search results should be displayed')
-        expect(homePage.getTopRatedMoviesCollection().count()).toBe(20, 'after non-existing value is passed to search, TopRated area with 20 movies should be presented')
-        expect(homePage.getPopularMoviesCollection().count()).toBe(20, 'after non-existing value is passed to search, Popular area with 20 movies should be presented')
+        expect(homePage.SearchResultCollection.count()).toBe(0, 'after non-existing value is passed to search, no search results should be displayed')
+        expect(homePage.TopRatedMoviesCollection.count()).toBe(20, 'after non-existing value is passed to search, TopRated area with 20 movies should be presented')
+        expect(homePage.PopularMoviesCollection.count()).toBe(20, 'after non-existing value is passed to search, Popular area with 20 movies should be presented')
     })
 
     it('opens appropriate category', ()=> {

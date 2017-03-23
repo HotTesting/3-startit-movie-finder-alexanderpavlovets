@@ -17,7 +17,7 @@ class HomePage {
         browser.get(this.URL)
     }
 
-    getTopRatedMoviesCollection() {
+    get TopRatedMoviesCollection() {
         let firstElemOfTopRatedShown = EC.visibilityOf(
             element(by.cssContainingText('movies > h3', 'Top Rated Movies')).element(by.xpath('following-sibling::div[1]')).$$('movie-card').first())
         browser.wait(firstElemOfTopRatedShown, 2000, 
@@ -25,7 +25,7 @@ class HomePage {
         return this.topRatedMoviesCollection
     }
 
-    getPopularMoviesCollection() {
+    get PopularMoviesCollection() {
         let firstElemOfPopularShown = EC.visibilityOf(
             element(by.cssContainingText('movies > h3', 'Popular Movies')).element(by.xpath('following-sibling::div[1]')).$$('movie-card').first())
         browser.wait(firstElemOfPopularShown, 2000, 
@@ -33,7 +33,7 @@ class HomePage {
         return this.popularMoviesCollection
     }
 
-    getSearchResultCollection() {
+    get SearchResultCollection() {
         let firstElemOfSearchResutsShown = EC.visibilityOf(
             element(by.cssContainingText('movies h3', 'Search Results')).element(by.xpath('following-sibling::div[1]')).$$('movie-card').first())
         browser.wait(firstElemOfSearchResutsShown, 2000, 
@@ -41,8 +41,7 @@ class HomePage {
 
         return this.searchResultsCollection
     }
-    //__________________________________________________________
-    // Rewrite getter to be like "get Search result", and then use it in tests like property of homePage
+
     searchForMovie(searchRequest) {
         this.searchField.sendKeys(searchRequest)
         this.goButton.click()

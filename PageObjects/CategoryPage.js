@@ -17,7 +17,17 @@ class CategoryPage {
     openMovieCard(movieCard){
        movieCard.$('h4 a').click()
        let titleOfOpenedMovieCardShown = EC.visibilityOf($$('h2').first())
-       browser.wait(titleOfOpenedMovieCardShown, 2000, 'Title of opened movie-card isn\'t displayed')
+       browser.wait(titleOfOpenedMovieCardShown, 2000, 'Title of opened movie-card should be displayed')
+    }
+
+    waitForFirstMovieCardOfOpenedCategory(){
+        let firstMovieCardIsShown = EC.visibilityOf(this.firstMovieCard)
+        browser.wait(firstMovieCardIsShown, 2000, 'First movie-card of opened category should be shown')
+    }
+
+    waitForLastMovieCardOfOpenedCategory(){
+        let lastMovieCardIsShown = EC.visibilityOf(this.movieCardsOfOpenedCategory.last())
+        browser.wait(lastMovieCardIsShown, 2000, 'Last movie-card of opened category should be shown')
     }
 
 

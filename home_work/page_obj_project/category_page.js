@@ -14,17 +14,9 @@ describe('Category page', () => {
     //     //browser.navigate().back()
     // })
 
-    // it('Action is opened and first movie has "action" category', ()=>{
-    //     let page = openCategoryByTitle('action')
-    //     browser.sleep(2000)
-    //     page.openMovieCard(page.movieCardsOfOpenedCategory.get(0))
-    //         expect(page.categoriesOfOpenedMovieCard.first().getText()).toBe('Action', 'First category of opened movie-card should be "Action"')
-    //_________________________________________________________________________________
-    //     this one test equal to next, but witout filter.  
-    // })
-
     it('action is opened and first movie has "action" category inside itself', ()=>{
         let page = openCategoryByTitle('Action')
+        page.waitForFirstMovieCardOfOpenedCategory()
         page.openMovieCard(page.firstMovieCard)
         let result = page.categoriesOfOpenedMovieCard.filter((elem)=> {
             return elem.getText().then((text) => text === 'Action')
@@ -35,23 +27,20 @@ describe('Category page', () => {
 
     it('western is opened and has 20 movie-cards', () => {
         let page = openCategoryByTitle('Western')
-        let lastMovieCardIsShown = EC.visibilityOf(page.movieCardsOfOpenedCategory.last())
-        browser.wait(lastMovieCardIsShown, 2000, 'Last movie-card of opened category should be shown')
+        page.waitForLastMovieCardOfOpenedCategory()
         expect(page.movieCardsOfOpenedCategory.count()).toBe(20, 'Opened "Western" category should contain 20 movie-cards')
     })
 
     it('horror is opened and first movie-card has an image', () => {
         let page = openCategoryByTitle('Horror')
-        let firstMovieCardIsShown = EC.visibilityOf(page.firstMovieCard)
-        browser.wait(firstMovieCardIsShown, 2000, 'First movie-card of opened category should be shown')
+        page.waitForFirstMovieCardOfOpenedCategory()
         let displ = page.firstMovieCard.$('img').isDisplayed().then(undefined, (err)=> false)
         expect(displ).toBeTruthy('Image of first movie-card of "Horror" category should be shown')
     })
 
     it('music is opened and first movie-card has "description" area with required elements', () => {
         let page = openCategoryByTitle('Music')
-        let firstMovieCardIsShown = EC.visibilityOf(page.firstMovieCard)
-        browser.wait(firstMovieCardIsShown, 2000, 'First movie-card of opened category should be shown')
+        page.waitForFirstMovieCardOfOpenedCategory()
         let title = page.firstMovieCard.$('.caption h4').isDisplayed().then(undefined, (err) => false)
         let releaseDate = page.firstMovieCard.$$('.caption p').first().isDisplayed().then(undefined, (err) => false)
         let viewDetailsLink = page.firstMovieCard.$$('.caption p').last().isDisplayed().then(undefined, (err) => false)
@@ -71,5 +60,12 @@ describe('Category page', () => {
     // _________________________________________________________________________________
     // Ask Sasha regarding iFrames, or come back here later. Now need to write tests, not investigate iFrames. 
     // })
+
+    xit('action is opened ', () => {
+        let page = openCategoryByTitle('Action')
+        let firstMovieCardIsShown = EC.visibilityOf(page.firstMovieCard)
+        browser.wait(firstMovieCardIsShown, 2000, 'First movie-card of opened category should be shown')
+
+    })
 
 })
