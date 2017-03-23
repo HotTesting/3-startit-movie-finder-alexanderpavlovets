@@ -66,7 +66,7 @@ describe('Category page', () => {
         page.waitForFirstMovieCardOfOpenedCategory()
         page.openMovieCard(page.firstMovieCard)
         let firstActorProfile = $('div.thumbnail')
-        let nameOfFirstActor = firstActorProfile.$('h6 a')
+        let nameOfFirstActor = firstActorProfile.$('h6 a').getText().then((text)=>{return text})
         firstActorProfile.$('a').click()
         page.waitForFirstMovieCardOfOpenedCategory() //wait for first Movie-card of "Movies of actor" page. 
         page.firstMovieCard.$('a').click()
@@ -74,8 +74,9 @@ describe('Category page', () => {
         browser.wait(EC.visibilityOf(castArea), 2000, '"Cast" area should be shown')
         let actorsPresented = castArea.$$('a')
         let a = actorsPresented.getText().then((text)=>console.log(text))
-        console.log(nameOfFirstActor)
+        let b = nameOfFirstActor.then((text)=>console.log(text))
         // make a filter here, to interact with "a" and find there nameOfFirstActor (do not forget to take a text from first actor)
+        
     })
 
 })
