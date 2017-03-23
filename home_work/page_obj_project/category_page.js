@@ -61,11 +61,21 @@ describe('Category page', () => {
     // Ask Sasha regarding iFrames, or come back here later. Now need to write tests, not investigate iFrames. 
     // })
 
-    xit('action is opened ', () => {
+    fit('action is opened, first actor from first movie card, is presented in first film of "Movies of actor" page', () => {
         let page = openCategoryByTitle('Action')
-        let firstMovieCardIsShown = EC.visibilityOf(page.firstMovieCard)
-        browser.wait(firstMovieCardIsShown, 2000, 'First movie-card of opened category should be shown')
-
+        page.waitForFirstMovieCardOfOpenedCategory()
+        page.openMovieCard(page.firstMovieCard)
+        let firstActorProfile = $('div.thumbnail')
+        let nameOfFirstActor = firstActorProfile.$('h6 a')
+        firstActorProfile.$('a').click()
+        page.waitForFirstMovieCardOfOpenedCategory() //wait for first Movie-card of "Movies of actor" page. 
+        page.firstMovieCard.$('a').click()
+        let castArea = $('div.row .is-flex')
+        browser.wait(EC.visibilityOf(castArea), 2000, '"Cast" area should be shown')
+        let actorsPresented = castArea.$$('a')
+        let a = actorsPresented.getText().then((text)=>console.log(text))
+        console.log(nameOfFirstActor)
+        // make a filter here, to interact with "a" and find there nameOfFirstActor (do not forget to take a text from first actor)
     })
 
 })
